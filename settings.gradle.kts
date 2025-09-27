@@ -1,1 +1,2 @@
-// settings.gradle.kts (project root) content here
+rootProject.name = "Yapp"
+include(":app")
