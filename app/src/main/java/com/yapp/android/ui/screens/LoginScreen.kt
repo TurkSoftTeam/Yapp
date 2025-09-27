@@ -1,4 +1,4 @@
-package com.yapp.android
+package com.yapp.android.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.yapp.android.ui.theme.YappTheme
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(onLoginClick: () -> Unit) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var rememberMe by remember { mutableStateOf(false) }
@@ -57,7 +57,7 @@ fun LoginScreen() {
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = { /* Handle login */ },
+            onClick = { onLoginClick() },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Login")
@@ -77,6 +77,6 @@ fun LoginScreen() {
 @Composable
 fun LoginScreenPreview() {
     YappTheme {
-        LoginScreen()
+        LoginScreen {}
     }
 }
