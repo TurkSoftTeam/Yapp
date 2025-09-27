@@ -25,3 +25,6 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+        env:
+          _JAVA_OPTIONS: "-Xmx4g"
+          ORG_GRADLE_PROJECT_ANDROID_D8_DEXER_HEAP_SIZE: "4096M"
