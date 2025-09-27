@@ -5,10 +5,18 @@ plugins {
     id("com.android.library") version "8.1.4" apply false
 }
 
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 // Eğer buildscript varsa:
 buildscript {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
