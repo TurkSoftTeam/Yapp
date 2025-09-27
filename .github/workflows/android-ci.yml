@@ -1,10 +1,9 @@
-name: Android CI
+name: Android Build Check
 
 on:
-  push:
-    branches: [main, android-compose-starter]
   pull_request:
-    branches: [main, android-compose-starter]
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,19 +11,24 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v2
         with:
-          distribution: 'temurin'
-          java-version: 17
+          distribution: 'zulu'
+          java-version: '17'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+      - name: Cache Gradle
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
-      - name: Build with Gradle
+      - name: Build project
         run: ./gradlew build
-        env:
-          _JAVA_OPTIONS: "-Xmx4g"
-          ORG_GRADLE_PROJECT_ANDROID_D8_DEXER_HEAP_SIZE: "4096M"
+
+      - name: Run tests
+        run: ./gradlew test
