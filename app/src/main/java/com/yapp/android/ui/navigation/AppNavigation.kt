@@ -16,10 +16,10 @@ import com.yapp.android.ui.viewmodel.LoginViewModel
 fun AppNavigation() {
     val navController = rememberNavController()
     val loginViewModel: LoginViewModel = viewModel()
-    val loggedInUser by loginViewModel.loggedInUser.collectAsState(initial = null)
+    val isAuthenticated by loginViewModel.isAuthenticated.collectAsState()
     
-    // Determine start destination based on login status
-    val startDestination = if (loggedInUser != null && loggedInUser!!.isLoggedIn) {
+    // Determine start destination based on authentication status from ViewModel
+    val startDestination = if (isAuthenticated) {
         Routes.HOME_SCREEN
     } else {
         Routes.LOGIN_SCREEN
