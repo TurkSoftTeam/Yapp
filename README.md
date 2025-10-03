@@ -48,3 +48,13 @@ app/
 - Minimum SDK: 24 (Android 7.0)
 - Target SDK: 34 (Android 14)
 - Kotlin 1.9.10+
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration:
+
+- ✅ Automated builds on every PR commit
+- ✅ Automated test execution
+- ✅ Build reports for debugging failures
+
+See [Branch Protection Configuration](.github/BRANCH_PROTECTION.md) for setting up required status checks to enforce successful builds before merging PRs.

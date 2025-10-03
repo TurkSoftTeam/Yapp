@@ -4,10 +4,15 @@ on:
   pull_request:
     branches:
       - main
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      pull-requests: write
 
     steps:
       - name: Checkout code
@@ -19,16 +24,33 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Cache Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Cache Gradle packages
         uses: actions/cache@v4
         with:
-          path: ~/.gradle/caches
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
       - name: Build project
-        run: ./gradlew build
+        run: ./gradlew build --no-daemon --stacktrace
 
       - name: Run tests
-        run: ./gradlew test
+        run: ./gradlew test --no-daemon --stacktrace
+        
+      - name: Upload build reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-reports
+          path: |
+            app/build/reports/
+            app/build/test-results/
