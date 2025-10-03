@@ -1,6 +1,3 @@
-rootProject.name = "Yapp"
-include(":app")
-
 pluginManagement {
     repositories {
         google()
@@ -15,3 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+rootProject.name = "Yapp"
+include(":app")
