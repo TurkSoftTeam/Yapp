@@ -3,10 +3,10 @@ package com.yapp.android.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
-import androidx.compose.material.icons.filled.Lightbulb
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.QuestionAnswer
-import androidx.compose.material.icons.filled.Explore
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -61,7 +61,7 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Icon(
-                    imageVector = Icons.Filled.Lightbulb,
+                    imageVector = Icons.Filled.Star,
                     contentDescription = "Smart Icon",
                     modifier = Modifier.size(64.dp),
                     tint = MaterialTheme.colorScheme.primary
@@ -94,9 +94,9 @@ fun BottomMenu() {
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        MenuButton(icon = Icons.Filled.Explore, label = "Explore")
+        MenuButton(icon = Icons.Filled.Home, label = "Explore")
         MenuButton(icon = Icons.Filled.Search, label = "Search")
-        MenuButton(icon = Icons.Filled.QuestionAnswer, label = "Ask")
+        MenuButton(icon = Icons.Filled.Info, label = "Ask")
     }
 }
 
