@@ -5,21 +5,30 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.yapp.android.ui.viewmodel.LoginViewModel
+import com.yapp.android.ui.viewmodel.LoggedInCheckViewModel
+import com.yapp.android.ui.viewmodel.NavigationDestination
 
 @Composable
 fun LoggedInCheckScreen(
     onNavigateToHome: () -> Unit,
     onNavigateToLogin: () -> Unit,
-    viewModel: LoginViewModel = viewModel()
+    viewModel: LoggedInCheckViewModel = viewModel()
 ) {
-    val isAuthenticated by viewModel.isAuthenticated.collectAsState()
+    val navigationDestination by viewModel.navigationDestination.collectAsState()
     
-    LaunchedEffect(isAuthenticated) {
-        if (isAuthenticated) {
-            onNavigateToHome()
-        } else {
-            onNavigateToLogin()
+    LaunchedEffect(navigationDestination) {
+        when (navigationDestination) {
+            is NavigationDestination.Home -> {
+                onNavigateToHome()
+                viewModel.resetNavigation()
+            }
+            is NavigationDestination.Login -> {
+                onNavigateToLogin()
+                viewModel.resetNavigation()
+            }
+            NavigationDestination.None -> {
+                // Do nothing, still checking
+            }
         }
     }
 }

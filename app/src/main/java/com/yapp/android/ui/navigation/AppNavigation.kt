@@ -35,8 +35,7 @@ fun AppNavigation() {
                             inclusive = true
                         }
                     }
-                },
-                viewModel = loginViewModel
+                }
             )
         }
         composable(Routes.LOGIN_SCREEN) {
