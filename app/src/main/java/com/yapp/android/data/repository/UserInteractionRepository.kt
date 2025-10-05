@@ -4,7 +4,7 @@ import com.yapp.android.data.database.User
 import com.yapp.android.data.database.UserDao
 import kotlinx.coroutines.flow.Flow
 
-class LoginRepository(private val userDao: UserDao) {
+class UserInteractionRepository(private val userDao: UserDao) {
     
     fun getLoggedInUser(): Flow<User?> = userDao.getLoggedInUser()
     
