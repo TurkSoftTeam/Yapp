@@ -61,7 +61,7 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Icon(
-                    imageVector = Icons.Default.Lightbulb,
+                    imageVector = Icons.Filled.Lightbulb,
                     contentDescription = "Smart Icon",
                     modifier = Modifier.size(64.dp),
                     tint = MaterialTheme.colorScheme.primary
@@ -94,9 +94,9 @@ fun BottomMenu() {
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        MenuButton(icon = Icons.Default.Explore, label = "Explore")
-        MenuButton(icon = Icons.Default.Search, label = "Search")
-        MenuButton(icon = Icons.Default.QuestionAnswer, label = "Ask")
+        MenuButton(icon = Icons.Filled.Explore, label = "Explore")
+        MenuButton(icon = Icons.Filled.Search, label = "Search")
+        MenuButton(icon = Icons.Filled.QuestionAnswer, label = "Ask")
     }
 }
 
