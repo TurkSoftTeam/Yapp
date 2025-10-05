@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.yapp.android.data.database.AppDatabase
-import com.yapp.android.data.repository.LoginRepository
+import com.yapp.android.data.repository.UserInteractionRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class LoggedInCheckViewModel(application: Application) : AndroidViewModel(application) {
     private val database = AppDatabase.getDatabase(application)
-    private val repository = LoginRepository(database.userDao())
+    private val repository = UserInteractionRepository(database.userDao())
     
     private val _navigationDestination = MutableStateFlow<NavigationDestination>(NavigationDestination.None)
     val navigationDestination: StateFlow<NavigationDestination> = _navigationDestination.asStateFlow()

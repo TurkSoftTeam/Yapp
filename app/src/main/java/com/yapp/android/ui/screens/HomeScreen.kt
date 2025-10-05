@@ -4,6 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,12 +15,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yapp.android.ui.theme.YappTheme
 import com.yapp.android.R
+import com.yapp.android.ui.viewmodel.HomeViewModel
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onLogout: () -> Unit = {},
+    viewModel: HomeViewModel = viewModel()
+) {
     val chapters = listOf("Chapter 1", "Chapter 2", "Chapter 3")
     val lessons = listOf(
         "Start your onboarding",
@@ -28,24 +36,44 @@ fun HomeScreen() {
         "The Cure for Boredom"
     )
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        TopBar()
-        Spacer(modifier = Modifier.height(16.dp))
-        LazyRow {
-            items(chapters) { chapter ->
-                ChapterTab(chapter)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("") },
+                actions = {
+                    IconButton(onClick = {
+                        viewModel.logout()
+                        onLogout()
+                    }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ExitToApp,
+                            contentDescription = "Logout"
+                        )
+                    }
+                }
+            )
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp)
+        ) {
+            TopBar()
+            Spacer(modifier = Modifier.height(16.dp))
+            LazyRow {
+                items(chapters) { chapter ->
+                    ChapterTab(chapter)
+                }
             }
+            Spacer(modifier = Modifier.height(16.dp))
+            lessons.forEach { lesson ->
+                LessonItem(lesson)
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+            BottomNavigationBar()
         }
-        Spacer(modifier = Modifier.height(16.dp))
-        lessons.forEach { lesson ->
-            LessonItem(lesson)
-            Spacer(modifier = Modifier.height(8.dp))
-        }
-        BottomNavigationBar()
     }
 }
 
