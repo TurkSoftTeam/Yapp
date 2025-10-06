@@ -52,10 +52,15 @@ android {
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
-            all {
-                it.exclude("**/screenshot/**")
-            }
         }
+    }
+}
+
+tasks.withType<Test>().configureEach {
+    // Exclude screenshot tests from regular test runs
+    // They should only run via Roborazzi tasks
+    if (!project.gradle.startParameter.taskNames.any { it.contains("Roborazzi") }) {
+        exclude("**/screenshot/**")
     }
 }
 
