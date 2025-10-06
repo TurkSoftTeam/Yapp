@@ -41,6 +41,7 @@ app/
 - **ViewModel** - UI-related data holder, lifecycle conscious
 - **StateFlow** - Type-safe reactive state management
 - **Android Gradle Plugin 8.1.4** - Build system
+- **Roborazzi** - Screenshot testing for Compose UI
 
 ## Requirements
 
@@ -56,5 +57,12 @@ This project uses GitHub Actions for continuous integration:
 - ✅ Automated builds on every PR commit
 - ✅ Automated test execution
 - ✅ Build reports for debugging failures
+- 📸 Automated screenshot generation for Compose UI
+
+### 📸 Viewing Screenshots
+
+After every PR build, screenshots of all Compose screens are automatically generated and uploaded as artifacts. 
+
+**[📖 How to Access Screenshots →](SCREENSHOTS.md)**
 
 See [Branch Protection Configuration](.github/BRANCH_PROTECTION.md) for setting up required status checks to enforce successful builds before merging PRs.

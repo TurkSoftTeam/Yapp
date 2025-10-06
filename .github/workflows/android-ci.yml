@@ -53,4 +53,17 @@ jobs:
           name: build-reports
           path: |
             app/build/reports/
-            app/build/test-results/
+            app/build/test-results/      
+      - name: Generate screenshots
+        run: ./gradlew recordRoborazziDebug --no-daemon --stacktrace
+        continue-on-error: true
+      
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: composable-screenshots
+          path: |
+            app/src/test/screenshots/
+            app/build/outputs/roborazzi/
+          if-no-files-found: warn
