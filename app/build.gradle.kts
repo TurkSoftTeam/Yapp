@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp") version "1.9.20-1.0.14"
+    id("io.github.takahirom.roborazzi")
 }
 
 android {
@@ -76,4 +77,11 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    
+    // Roborazzi for screenshot testing
+    testImplementation("io.github.takahirom.roborazzi:roborazzi:1.7.0")
+    testImplementation("io.github.takahirom.roborazzi:roborazzi-compose:1.7.0")
+    testImplementation("io.github.takahirom.roborazzi:roborazzi-junit-rule:1.7.0")
+    testImplementation("org.robolectric:robolectric:4.11.1")
+    testImplementation("androidx.compose.ui:ui-test-junit4")
 }
