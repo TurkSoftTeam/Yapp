@@ -29,8 +29,6 @@ class LoginScreenScreenshotTest {
             }
         }
 
-        composeTestRule.onRoot().captureRoboImage(
-            "app/src/test/screenshots/LoginScreen.png"
-        )
+        composeTestRule.onRoot().captureRoboImage()
     }
 }

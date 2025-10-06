@@ -30,8 +30,6 @@ class MainScreenScreenshotTest {
             }
         }
 
-        composeTestRule.onRoot().captureRoboImage(
-            "app/src/test/screenshots/MainScreen.png"
-        )
+        composeTestRule.onRoot().captureRoboImage()
     }
 }

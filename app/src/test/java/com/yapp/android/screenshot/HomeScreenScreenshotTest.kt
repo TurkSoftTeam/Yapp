@@ -29,8 +29,6 @@ class HomeScreenScreenshotTest {
             }
         }
 
-        composeTestRule.onRoot().captureRoboImage(
-            "app/src/test/screenshots/HomeScreen.png"
-        )
+        composeTestRule.onRoot().captureRoboImage()
     }
 }
