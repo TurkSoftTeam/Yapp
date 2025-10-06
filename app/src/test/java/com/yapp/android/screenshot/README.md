@@ -6,6 +6,8 @@ This directory contains screenshot tests for Jetpack Compose screens using Robor
 
 Screenshot tests automatically capture images of our composable screens to verify UI appearance and catch visual regressions.
 
+**Note**: Screenshot tests are excluded from regular test runs (`./gradlew test`) to avoid build failures. They are only executed via dedicated Roborazzi tasks.
+
 ## Running Tests
 
 ### Generate Screenshots Locally
