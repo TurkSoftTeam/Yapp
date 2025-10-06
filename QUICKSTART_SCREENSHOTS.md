@@ -44,6 +44,8 @@ composable-screenshots.zip
     └── (additional test artifacts)
 ```
 
+📖 **Want to know what each screenshot shows?** See [SCREENSHOT_EXAMPLES.md](SCREENSHOT_EXAMPLES.md) for detailed descriptions.
+
 ## 🔍 Troubleshooting
 
 **Q: I don't see the "composable-screenshots" artifact**
