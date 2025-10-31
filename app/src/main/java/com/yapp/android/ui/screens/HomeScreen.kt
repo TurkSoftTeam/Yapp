@@ -24,6 +24,7 @@ import com.yapp.android.ui.viewmodel.HomeViewModel
 @Composable
 fun HomeScreen(
     onLogout: () -> Unit = {},
+    onNavigateToAbout: () -> Unit = {},
     viewModel: HomeViewModel = viewModel()
 ) {
     Scaffold(
@@ -31,6 +32,12 @@ fun HomeScreen(
             TopAppBar(
                 title = { Text("") },
                 actions = {
+                    IconButton(onClick = onNavigateToAbout) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = "About"
+                        )
+                    }
                     IconButton(onClick = {
                         viewModel.logout()
                         onLogout()
