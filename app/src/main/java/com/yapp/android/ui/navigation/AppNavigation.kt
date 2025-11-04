@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yapp.android.ui.navigation.Routes
+import com.yapp.android.ui.screens.AboutScreen
 import com.yapp.android.ui.screens.HomeScreen
 import com.yapp.android.ui.screens.LoggedInCheckScreen
 import com.yapp.android.ui.screens.LoginScreen
@@ -59,6 +60,16 @@ fun AppNavigation() {
                             inclusive = true
                         }
                     }
+                },
+                onNavigateToAbout = {
+                    navController.navigate(Routes.ABOUT_SCREEN)
+                }
+            )
+        }
+        composable(Routes.ABOUT_SCREEN) {
+            AboutScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
                 }
             )
         }
